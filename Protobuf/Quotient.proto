@@ -1,0 +1,22 @@
+// [START declaration]
+syntax = "proto3";
+package autoscaler;
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "de.cf.autoscaler.protobuf";
+option java_outer_classname = "ProtobufQuotientWrapper";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "de.cf.autoscaler.ProtobufQuotientMetricWrapper";
+// [END csharp_declaration]
+
+message ProtoQuotient {
+  int64 timestamp = 1;
+  string appId = 2;
+  int32 requests = 3;
+  int32 instances = 5;
+  int32 quotient = 6;
+  string description = 7;
+}

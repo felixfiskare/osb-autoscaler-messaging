@@ -1,0 +1,22 @@
+// [START declaration]
+syntax = "proto3";
+package autoscaler;
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "de.cf.autoscaler.protobuf";
+option java_outer_classname = "ProtobufHttpMetricWrapper";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "de.cf.autoscaler.ProtobufHttpMetricWrapper";
+// [END csharp_declaration]
+
+message ProtoHttpMetric {
+  int64 timestamp = 1;
+  string metricName = 2;
+  string appId = 3;
+  int32 requests = 4;
+  int32 latency = 5;
+  string description = 6;
+}
