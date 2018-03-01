@@ -1,6 +1,6 @@
 package de.cf.autoscaler.kafka.messages;
 
-import de.cf.autoscaler.kafka.protobuf.ProtobufScalingWrapper.ProtoScaling;
+import de.cf.autoscaler.kafka.protobuf.ProtobufScalingLogWrapper.ProtoScalingLog;
 
 /**
  * Entity for logging scaling executions.
@@ -25,6 +25,10 @@ public class ScalingLog {
 	 * ID of the application
 	 */
 	private String appId;
+	/**
+	 * Name of the application
+	 */
+	private String appName;
 	/**
 	 * index of the component which caused the scaling event
 	 */
@@ -105,9 +109,10 @@ public class ScalingLog {
 	 * Constructor for creating a ScalingLog out of a {@linkplain ProtoScaling}.
 	 * @param sc {@linkplain ProtoScaling} to get fields from
 	 */
-	public ScalingLog(ProtoScaling sc) {
+	public ScalingLog(ProtoScalingLog sc) {
 		this(sc.getTimestamp(),
 				sc.getAppId(),
+				sc.getResourceName(),
 				sc.getComponent(),
 				sc.getOldInstances(),
 				sc.getNewInstances(),
@@ -131,7 +136,7 @@ public class ScalingLog {
 	 * Constructor for creating a ScalingLog with fields.
 	 * See the docs of each field of this class for more information on the parameters of this constructor.
 	 */
-	public ScalingLog(long timestamp, String appId, int component, int oldInstances, int newInstances,
+	public ScalingLog(long timestamp, String appId, String appName, int component, int oldInstances, int newInstances,
 			int currentMaxInstanceLimit, int currentMinInstanceLimit, int currentCpuLoad, int currentCpuUpperLimit,
 			int currentCpuLowerLimit, long currentRamLoad, long currentRamUpperLimit, long currentRamLowerLimit,
 			int currentRequestCount, int currentLatencyValue, int currentLatencyUpperLimit, int currentLatencyLowerLimit,
@@ -139,6 +144,7 @@ public class ScalingLog {
 
 		this.timestamp = timestamp;
 		this.appId = appId;
+		this.appName = appName;
 		this.component = component;
 		this.oldInstances = oldInstances;
 		this.newInstances = newInstances;
@@ -174,6 +180,14 @@ public class ScalingLog {
 
 	public void setAppId(String appId) {
 		this.appId = appId;
+	}
+	
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
 	}
 
 	public int getComponent() {
@@ -311,48 +325,20 @@ public class ScalingLog {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	// --- end getter and setter ---
 	
+	// --- end getter and setter ---
+
+	@Override
 	public String toString() {
-		return "{ "
-				+ "\"timestamp\" : \"" + timestamp + "\""
-				+ ", "
-				+ "\"appId\" : \"" + appId + "\""
-				+ ", "
-				+ "\"component\" : \"" + component + "\""
-				+ ", "
-				+ "\"oldInstances\" : \"" + oldInstances + "\""
-				+ ", "
-				+ "\"newInstances\" : \"" + newInstances + "\""
-				+ ", "
-				+ "\"currentMaxInstanceLimit\" : \"" + currentMaxInstanceLimit + "\""
-				+ ", "
-				+ "\"currentMinInstanceLimit\" : \"" + currentMinInstanceLimit + "\""
-				+ ", "
-				+ "\"currentCpuLoad\" : \"" + currentCpuLoad + "\""
-				+ ", "
-				+ "\"currentCpuUpperLimit\" : \"" + currentCpuUpperLimit + "\""
-				+ ", "
-				+ "\"currentCpuLowerLimit\" : \"" + currentCpuLowerLimit + "\""
-				+ ", "
-				+ "\"currentRamLoad\" : \"" + currentRamLoad + "\""
-				+ ", "
-				+ "\"currentRamUpperLimit\" : \"" + currentRamUpperLimit + "\""
-				+ ", "
-				+ "\"currentRamLowerLimit\" : \"" + currentRamLowerLimit + "\""
-				+ ", "
-				+ "\"currentRequestCount\" : \"" + currentRequestCount + "\""
-				+ ", "
-				+ "\"currentLatencyValue\" : \"" + currentLatencyValue + "\""
-				+ ", "
-				+ "\"currentLatencyUpperLimit\" : \"" + currentLatencyUpperLimit + "\""
-				+ ", "
-				+ "\"currentLatencyLowerLimit\" : \"" + currentLatencyLowerLimit + "\""
-				+ ", "
-				+ "\"currentQuotientValue\" : \"" + currentQuotientValue + "\""
-				+ ", "
-				+ "\"description\" : \"" + description + "\""
-				+ "}";
+		return "ScalingLog [timestamp=" + timestamp + ", appId=" + appId + ", appName=" + appName + ", component="
+				+ component + ", oldInstances=" + oldInstances + ", newInstances=" + newInstances
+				+ ", currentMaxInstanceLimit=" + currentMaxInstanceLimit + ", currentMinInstanceLimit="
+				+ currentMinInstanceLimit + ", currentCpuLoad=" + currentCpuLoad + ", currentCpuUpperLimit="
+				+ currentCpuUpperLimit + ", currentCpuLowerLimit=" + currentCpuLowerLimit + ", currentRamLoad="
+				+ currentRamLoad + ", currentRamUpperLimit=" + currentRamUpperLimit + ", currentRamLowerLimit="
+				+ currentRamLowerLimit + ", currentRequestCount=" + currentRequestCount + ", currentLatencyValue="
+				+ currentLatencyValue + ", currentLatencyUpperLimit=" + currentLatencyUpperLimit
+				+ ", currentLatencyLowerLimit=" + currentLatencyLowerLimit + ", currentQuotientValue="
+				+ currentQuotientValue + ", description=" + description + "]";
 	}
 }

@@ -1,0 +1,46 @@
+// [START declaration]
+syntax = "proto3";
+package autoscaler;
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "de.cf.autoscaler.kafka.protobuf";
+option java_outer_classname = "ProtobufScalingLogWrapper";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "de.cf.autoscaler.ProtobufScalingLogWrapper";
+// [END csharp_declaration]
+
+message ProtoScalingLog {
+  int64 timestamp = 1;
+  string appId = 2;
+  string resourceName = 3;
+  int32 component = 4;
+  
+  int32 oldInstances = 5;
+  int32 newInstances = 6;
+  int32 currentMaxInstanceLimit = 7;
+  int32 currentMinInstanceLimit = 8;
+  
+  int32 currentCpuLoad = 9;
+  int32 currentCpuUpperLimit = 10;
+  int32 currentCpuLowerLimit = 11;
+
+  int64 currentRamLoad = 12;
+  int64 currentRamUpperLimit = 13;
+  int64 currentRamLowerLimit = 14;
+	
+  int32 currentRequestCount = 15;
+	
+  int32 currentLatencyValue = 16;
+  int32 currentLatencyUpperLimit = 17;
+  int32 currentLatencyLowerLimit = 18;
+	
+  int32 currentQuotientValue = 19;
+  
+  int32 httpStatusCode = 20;
+  string httpStatusText = 21;
+	
+  string description = 22; 
+}
