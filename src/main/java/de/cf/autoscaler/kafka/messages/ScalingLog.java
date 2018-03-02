@@ -4,7 +4,7 @@ import de.cf.autoscaler.kafka.protobuf.ProtobufScalingWrapper.ProtoScaling;
 
 /**
  * Entity for logging scaling executions.
- * @author Marius Berger
+ * @author Marius Berger, Johannes Hiemer
  *
  */
 public class ScalingLog {
