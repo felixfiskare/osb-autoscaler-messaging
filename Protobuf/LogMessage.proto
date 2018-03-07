@@ -1,0 +1,14 @@
+syntax = "proto3";
+package autoscaler;
+
+option java_package = "de.cf.autoscaler.kafka.protobuf";
+option java_outer_classname = "ProtobufLogMessageWrapper";
+
+option csharp_namespace = "de.cf.autoscaler.ProtobufLogMessageWrapper";
+
+message ProtoLogMessage {
+    int64 timestamp = 1;
+    bytes logMessage = 2;
+    string logMessageType = 3;
+    string appId = 4;
+}
