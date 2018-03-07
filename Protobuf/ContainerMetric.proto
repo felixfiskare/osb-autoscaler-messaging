@@ -4,7 +4,7 @@ package autoscaler;
 // [END declaration]
 
 // [START java_declaration]
-option java_package = "de.cf.autoscaler.protobuf";
+option java_package = "de.cf.autoscaler.kafka.protobuf";
 option java_outer_classname = "ProtobufContainerMetricWrapper";
 // [END java_declaration]
 
