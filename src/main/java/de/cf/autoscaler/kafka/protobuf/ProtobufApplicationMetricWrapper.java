@@ -90,6 +90,7 @@ public final class ProtobufApplicationMetricWrapper {
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:autoscaler.ProtoApplicationMetric)
       ProtoApplicationMetricOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use ProtoApplicationMetric.newBuilder() to construct.
     private ProtoApplicationMetric(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -110,15 +111,19 @@ public final class ProtobufApplicationMetricWrapper {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
-    @SuppressWarnings("unused")
-	private ProtoApplicationMetric(
+    private ProtoApplicationMetric(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -128,7 +133,8 @@ public final class ProtobufApplicationMetricWrapper {
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -194,6 +200,7 @@ public final class ProtobufApplicationMetricWrapper {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -416,6 +423,7 @@ public final class ProtobufApplicationMetricWrapper {
       if (!getDescriptionBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 10, description_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -460,11 +468,11 @@ public final class ProtobufApplicationMetricWrapper {
       if (!getDescriptionBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, description_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -496,11 +504,11 @@ public final class ProtobufApplicationMetricWrapper {
           == other.getInstanceCount());
       result = result && getDescription()
           .equals(other.getDescription());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
-    @SuppressWarnings("unchecked")
-	@java.lang.Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -534,6 +542,17 @@ public final class ProtobufApplicationMetricWrapper {
       return hash;
     }
 
+    public static de.cf.autoscaler.kafka.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static de.cf.autoscaler.kafka.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static de.cf.autoscaler.kafka.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -630,7 +649,7 @@ public final class ProtobufApplicationMetricWrapper {
                 de.cf.autoscaler.kafka.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric.class, de.cf.autoscaler.kafka.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric.Builder.class);
       }
 
-      // Construct using de.cf.autoscaler.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric.newBuilder()
+      // Construct using de.cf.autoscaler.kafka.protobuf.ProtobufApplicationMetricWrapper.ProtoApplicationMetric.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -708,7 +727,7 @@ public final class ProtobufApplicationMetricWrapper {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -721,12 +740,12 @@ public final class ProtobufApplicationMetricWrapper {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -773,6 +792,7 @@ public final class ProtobufApplicationMetricWrapper {
           description_ = other.description_;
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1189,12 +1209,12 @@ public final class ProtobufApplicationMetricWrapper {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1217,7 +1237,7 @@ public final class ProtobufApplicationMetricWrapper {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new ProtoApplicationMetric(input, extensionRegistry);
+        return new ProtoApplicationMetric(input, extensionRegistry);
       }
     };
 
@@ -1256,10 +1276,10 @@ public final class ProtobufApplicationMetricWrapper {
       "\n\003cpu\030\004 \001(\005\022\013\n\003ram\030\005 \001(\003\022\020\n\010requests\030\006 \001" +
       "(\005\022\017\n\007latency\030\007 \001(\005\022\020\n\010quotient\030\010 \001(\005\022\025\n" +
       "\rinstanceCount\030\t \001(\005\022\023\n\013description\030\n \001(" +
-      "\tBq\n\031de.cf.autoscaler.protobufB Protobuf" +
-      "ApplicationMetricWrapper\252\0021de.cf.autosca" +
-      "ler.ProtobufApplicationMetricWrapperb\006pr" +
-      "oto3"
+      "\tBw\n\037de.cf.autoscaler.kafka.protobufB Pr" +
+      "otobufApplicationMetricWrapper\252\0021de.cf.a" +
+      "utoscaler.ProtobufApplicationMetricWrapp" +
+      "erb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

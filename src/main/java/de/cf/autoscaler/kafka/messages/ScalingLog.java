@@ -106,8 +106,8 @@ public class ScalingLog {
 	private String description;
 	
 	/**
-	 * Constructor for creating a ScalingLog out of a {@linkplain ProtoScaling}.
-	 * @param sc {@linkplain ProtoScaling} to get fields from
+	 * Constructor for creating a ScalingLog out of a {@linkplain ProtoScalingLog}.
+	 * @param sc {@linkplain ProtoScalingLog} to get fields from
 	 */
 	public ScalingLog(ProtoScalingLog sc) {
 		this(sc.getTimestamp(),
