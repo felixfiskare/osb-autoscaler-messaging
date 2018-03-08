@@ -24,9 +24,14 @@ public final class ProtobufLogMessageWrapper {
     long getTimestamp();
 
     /**
-     * <code>bytes logMessage = 2;</code>
+     * <code>string logMessage = 2;</code>
      */
-    com.google.protobuf.ByteString getLogMessage();
+    java.lang.String getLogMessage();
+    /**
+     * <code>string logMessage = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getLogMessageBytes();
 
     /**
      * <code>string logMessageType = 3;</code>
@@ -62,7 +67,7 @@ public final class ProtobufLogMessageWrapper {
     }
     private ProtoLogMessage() {
       timestamp_ = 0L;
-      logMessage_ = com.google.protobuf.ByteString.EMPTY;
+      logMessage_ = "";
       logMessageType_ = "";
       appId_ = "";
     }
@@ -104,8 +109,9 @@ public final class ProtobufLogMessageWrapper {
               break;
             }
             case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              logMessage_ = input.readBytes();
+              logMessage_ = s;
               break;
             }
             case 26: {
@@ -154,12 +160,37 @@ public final class ProtobufLogMessageWrapper {
     }
 
     public static final int LOGMESSAGE_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString logMessage_;
+    private volatile java.lang.Object logMessage_;
     /**
-     * <code>bytes logMessage = 2;</code>
+     * <code>string logMessage = 2;</code>
      */
-    public com.google.protobuf.ByteString getLogMessage() {
-      return logMessage_;
+    public java.lang.String getLogMessage() {
+      java.lang.Object ref = logMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        logMessage_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string logMessage = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLogMessageBytes() {
+      java.lang.Object ref = logMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        logMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int LOGMESSAGETYPE_FIELD_NUMBER = 3;
@@ -245,8 +276,8 @@ public final class ProtobufLogMessageWrapper {
       if (timestamp_ != 0L) {
         output.writeInt64(1, timestamp_);
       }
-      if (!logMessage_.isEmpty()) {
-        output.writeBytes(2, logMessage_);
+      if (!getLogMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, logMessage_);
       }
       if (!getLogMessageTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, logMessageType_);
@@ -266,9 +297,8 @@ public final class ProtobufLogMessageWrapper {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, timestamp_);
       }
-      if (!logMessage_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, logMessage_);
+      if (!getLogMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, logMessage_);
       }
       if (!getLogMessageTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, logMessageType_);
@@ -451,7 +481,7 @@ public final class ProtobufLogMessageWrapper {
         super.clear();
         timestamp_ = 0L;
 
-        logMessage_ = com.google.protobuf.ByteString.EMPTY;
+        logMessage_ = "";
 
         logMessageType_ = "";
 
@@ -527,8 +557,9 @@ public final class ProtobufLogMessageWrapper {
         if (other.getTimestamp() != 0L) {
           setTimestamp(other.getTimestamp());
         }
-        if (other.getLogMessage() != com.google.protobuf.ByteString.EMPTY) {
-          setLogMessage(other.getLogMessage());
+        if (!other.getLogMessage().isEmpty()) {
+          logMessage_ = other.logMessage_;
+          onChanged();
         }
         if (!other.getLogMessageType().isEmpty()) {
           logMessageType_ = other.logMessageType_;
@@ -591,17 +622,43 @@ public final class ProtobufLogMessageWrapper {
         return this;
       }
 
-      private com.google.protobuf.ByteString logMessage_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object logMessage_ = "";
       /**
-       * <code>bytes logMessage = 2;</code>
+       * <code>string logMessage = 2;</code>
        */
-      public com.google.protobuf.ByteString getLogMessage() {
-        return logMessage_;
+      public java.lang.String getLogMessage() {
+        java.lang.Object ref = logMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          logMessage_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>bytes logMessage = 2;</code>
+       * <code>string logMessage = 2;</code>
        */
-      public Builder setLogMessage(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getLogMessageBytes() {
+        java.lang.Object ref = logMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          logMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string logMessage = 2;</code>
+       */
+      public Builder setLogMessage(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -611,11 +668,25 @@ public final class ProtobufLogMessageWrapper {
         return this;
       }
       /**
-       * <code>bytes logMessage = 2;</code>
+       * <code>string logMessage = 2;</code>
        */
       public Builder clearLogMessage() {
         
         logMessage_ = getDefaultInstance().getLogMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string logMessage = 2;</code>
+       */
+      public Builder setLogMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        logMessage_ = value;
         onChanged();
         return this;
       }
@@ -822,7 +893,7 @@ public final class ProtobufLogMessageWrapper {
     java.lang.String[] descriptorData = {
       "\n\020LogMessage.proto\022\nautoscaler\"_\n\017ProtoL" +
       "ogMessage\022\021\n\ttimestamp\030\001 \001(\003\022\022\n\nlogMessa" +
-      "ge\030\002 \001(\014\022\026\n\016logMessageType\030\003 \001(\t\022\r\n\005appI" +
+      "ge\030\002 \001(\t\022\026\n\016logMessageType\030\003 \001(\t\022\r\n\005appI" +
       "d\030\004 \001(\tBi\n\037de.cf.autoscaler.kafka.protob" +
       "ufB\031ProtobufLogMessageWrapper\252\002*de.cf.au" +
       "toscaler.ProtobufLogMessageWrapperb\006prot" +

@@ -8,7 +8,7 @@ option csharp_namespace = "de.cf.autoscaler.ProtobufLogMessageWrapper";
 
 message ProtoLogMessage {
     int64 timestamp = 1;
-    bytes logMessage = 2;
+    string logMessage = 2;
     string logMessageType = 3;
     string appId = 4;
 }

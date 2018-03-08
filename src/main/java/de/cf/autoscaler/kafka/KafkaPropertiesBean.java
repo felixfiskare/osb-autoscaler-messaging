@@ -50,6 +50,11 @@ public class KafkaPropertiesBean {
 	 * Topic for binding notifications
 	 */
 	private String bindingTopic;
+
+	/**
+	 * Topic for log messages
+	 */
+	private String logMessageTopic;
 	
 	/**
 	 * Count of Container consumers to start
@@ -149,6 +154,12 @@ public class KafkaPropertiesBean {
 
 	public void setBindingTopic(String bindingTopic) {
 		this.bindingTopic = bindingTopic;
+	}
+
+	public String getLogMessageTopic() { return logMessageTopic; }
+
+	public void setLogMessageTopic(String logMessageTopic) {
+		this.logMessageTopic = logMessageTopic;
 	}
 
 	public int getContainerConsumerCount() {
